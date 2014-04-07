@@ -1,1 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap>
+   <typeAlias alias="msDTO" type="ms_AdminAction.ms_AdminDTO" />
+   
+       
+       <resultMap id="msRes" class="msDTO" >
+            <result property="no" column="no" />
+            <result property="store" column="store" />
+            <result property="s_Addr" column="s_Addr" />
+            <result property="sfile_Orgname" column="sfile_Orgname" />
+            <result property="sfile_Savname" column="sfile_Savname" />
+            <result property="s_Lat" column="s_Lat" />
+            <result property="s_Lng" column="s_Lng" />
+            <result property="s_Action" column="s_Action" />
+            <result property="m_Category" column="m_Category" />
+            <result property="m_A" column="m_A" />
+            <result property="m_Ap" column="m_Ap" />
+            <result property="m_Afile_Orgname" column="m_Afile_Orgname" />
+            <result property="m_Afile_Savname" column="m_Afile_Savname" />
+            <result property="m_B" column="m_B" />
+            <result property="m_Bp" column="m_Bp" />
+            <result property="m_Bfile_Orgname" column="m_Bfile_Orgname" />
+            <result property="m_Bfile_Savname" column="m_Bfile_Savname" />
+            <result property="m_C" column="m_C" />
+            <result property="m_Cp" column="m_Cp" />
+            <result property="m_Cfile_Orgname" column="m_Cfile_Orgname" />
+            <result property="m_Cfile_Savname" column="m_Cfile_Savname" />
+            <result property="sreg_Date" column="sreg_Date" />
+       </resultMap>
+       
+       
+       <sql id="ms_Select-all">
+			select * from store
+       </sql>
+       <sql id="ms_Where-no">
+            where no=#no#
+       </sql>
+       
+       
+       
+       <select id="ms_SelectAll" resultMap="msRes" parameterClass="int">
+           <include refid="ms_Select-all"/>
+            ORDER BY no DESC
+       </select>
+       
+       
+       <select id="ms_SelectOne" resultMap="msRes" parameterClass="int">
+           <include refid="ms_Select-all" />
+           <include refid="ms_Where-no" />
+       </select>
+       
+       
+       <select id="ms_SelectLastNo" resultClass="msDTO" parameterClass="int">
+           SELECT max(no) as no FROM STORE
+       </select>
+       
+       <select id="ms_SelectLoca"  resultMap="msRes"  parameterClass="string">
+           <include refid="ms_Select-all" />
+           WHERE S_ADDR LIKE '%'||#s_addr#||'%'
+       </select>
+       
+       <select id="ms_SelectStore"  resultMap="msRes"  parameterClass="string">
+           <include refid="ms_Select-all" />
+           WHERE STORE LIKE '%'||#store#||'%'
+       </select>
+       
+       
+       <select id="ms_SelectLoca_Cate"  resultMap="msRes" >
+            <include refid="ms_Select-all" />
+            (WHERE S_ADDR LIKE '%'||#s_addr#||'%') WHERE M_CATEGORY LIKE '%'||#m_Category#||'%'
+       </select>
+       
+       
+       <insert id="ms_InsertStore" parameterClass="msDTO" >
+                 INSERT INTO STORE (NO, 
+                                                     STORE,
+                                                     S_ADDR, 
+                                                     S_LAT, 
+                                                     S_LNG, 
+                                                     S_ACTION,
+                                                     M_CATEGORY,
+                                                     M_A,
+                                                     M_AP,                     
+                                                     M_B, 
+                                                     M_BP,
+                                                     M_C,
+                                                     M_CP,
+                                                     SREG_DATE
+                                                    )
+                                                 VALUES (STORE_SEQ.NEXTVAL,
+                                                                #store#,
+                                                                #s_Addr#,
+                                                                #s_Lat#,
+                                                                #s_Lng#,
+                                                                #s_Action#,
+                                                                #m_Category#,
+                                                                #m_A#,
+                                                                #m_Ap#,
+                                                                #m_B#,
+                                                                #m_Bp#,
+                                                                #m_C#,
+                                                                #m_Cp#,
+                                                                #sreg_Date#
+                                                               )
+       </insert>
+       
+       
+       <update id="ms_UpdateStore" parameterClass="msDTO">
+            UPDATE STORE SET NO = #no#,
+                                              STORE = #store#,
+                                              S_ADDR =#s_Addr#,
+                                              S_LAT = #s_Lat#,
+                                              S_LNG = #s_Lng#,
+                                              S_ACTION = #s_Action#,
+                                              M_CATEGORY = #m_Category#,
+                                              M_A = #m_A#,
+                                              M_AP = #m_Ap#,
+                                              M_B = #m_B#,
+                                              M_BP = #m_Bp#,
+                                              M_C = #m_C#,
+                                              M_CP = #m_Cp#,
+                                              SREG_DATE = #sreg_Date#
+           <include refid="ms_Where-no" />
+       </update>
+       
+              
+              <update id="s_UpdateFile" parameterClass="msDTO">
+                  UPDATE STORE SET SFILE_ORGNAME = #sfile_Orgname#,
+                                                   SFILE_SAVNAME = #sfile_Savname#
+                <include refid="ms_Where-no" />
+              </update>
+              
+              
+              <update id="ma_UpdateFile" parameterClass="msDTO">
+                  UPDATE STORE SET M_AFILE_ORGNAME = #m_Afile_Orgname#,
+                                                   M_AFILE_SAVNAME = #m_Afile_Savname#
+                <include refid="ms_Where-no" />
+              </update>
+              
+              <update id="mb_UpdateFile" parameterClass="msDTO">
+                  UPDATE STORE SET M_BFILE_ORGNAME = #m_Bfile_Orgname#,
+                                                   M_BFILE_SAVNAME = #m_Bfile_Savname#
+                <include refid="ms_Where-no" />
+              </update>
+              
+              <update id="mc_UpdateFile" parameterClass="msDTO">
+                  UPDATE STORE SET M_CFILE_ORGNAME = #m_Cfile_Orgname#,
+                                                   M_CFILE_SAVNAME = #m_Cfile_Savname#
+                <include refid="ms_Where-no" />
+              </update>
+              
+              
+       
+       <delete id="ms_DeleteStore" parameterClass="msDTO">
+           DELETE FROM STORE
+           <include refid="ms_Where-no" />
+       </delete>
+       
+</sqlMap>

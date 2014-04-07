@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+   
+<struts>
+    <!-- 용량제한 설정 -->
+    <constant name="struts.multipart.saveDir" value="/tmp" /><!-- 임시 거쳐가는 폴더 -->
+    <constant name="struts.multipart.maxSize" value="10485760" /><!-- 최대 10MB까지 업로드 가능 -->
+    
+    <package name="store" extends="struts-default" >
+      <interceptors>
+         <interceptor name="storeDAO" class="ms_AdminAction.StoreDAOInterceptor" />
+      </interceptors>
+      
+      <!-- 매장 등록 액션 -->
+      <action name="ms_InsertForm" class="ms_AdminAction.ms_InsertFormAction" method="form">
+            <result>/ms_Admin/ms_InsertForm.jsp</result>
+      </action>
+      
+      <action name="ms_InsertAction" class="ms_AdminAction.ms_InsertFormAction">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="fileUpload" />
+          <interceptor-ref name="params" />
+              <result type="redirect-action">
+                 <param name="actionName">ms_ListAction</param>
+              </result>
+      </action>
+      
+      <!-- 매장 리스트 액션 -->
+      <action name="ms_ListAction" class="ms_AdminAction.ms_ListAction">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="params" />
+              <result>/ms_Admin/ms_List.jsp</result>
+      </action>
+      
+      <!-- 매장 검색 리스트 액션 -->
+      <action name="ms_SearchListAction" class="ms_AdminAction.ms_SearchListAction">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="params" />
+              <result name="LIST" type="redirect-action">
+                   <param name="actionName">ms_ListAction</param>
+              </result>
+              <result name="SUCCESS">/ms_Admin/ms_SearchList.jsp</result>
+      </action>
+      
+      <!-- 매장 뷰 페이지 -->
+      <action name="ms_ViewAction" class="ms_AdminAction.ms_ViewAction">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="params" />
+              <result>/ms_Admin/ms_View.jsp</result>
+      </action>
+      
+      <!-- 파일 다운로드 액션인데 쓸모가 없다 아~ 왜 만들었을까~ -->
+      <action name="s_FileDownloadAction" class="ms_AdminAction.ms_ViewAction" method="s_Download">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="params" />
+              <result name="success" type="stream">
+                        <param name="contendType">binary/octet-stream</param>
+                        <param name="inputName">s_InputStream</param>
+                        <param name="contentDisposition">${s_ContentDisposition}</param>
+                        <param name="contentLength">${s_ContentLength}</param>
+                        <param name="bufferSize">4069</param>
+              </result>
+      </action>
+      <action name="ma_FileDownloadAction" class="ms_AdminAction.ms_ViewAction" method="ma_Download">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="params" />
+              <result name="success" type="stream">
+                        <param name="contendType">binary/octet-stream</param>
+                        <param name="inputName">ma_InputStream</param>
+                        <param name="contentDisposition">${ma_ContentDisposition}</param>
+                        <param name="contentLength">${ma_ContentLength}</param>
+                        <param name="bufferSize">4069</param>
+              </result>
+      </action>
+      <action name="mb_FileDownloadAction" class="ms_AdminAction.ms_ViewAction" method="mb_Download">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="params" />
+              <result name="success" type="stream">
+                        <param name="contendType">binary/octet-stream</param>
+                        <param name="inputName">mb_InputStream</param>
+                        <param name="contentDisposition">${mb_ContentDisposition}</param>
+                        <param name="contentLength">${mb_ContentLength}</param>
+                        <param name="bufferSize">4069</param>
+              </result>
+      </action>
+      <action name="mc_FileDownloadAction" class="ms_AdminAction.ms_ViewAction" method="mc_Download">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="params" />
+              <result name="success" type="stream">
+                        <param name="contendType">binary/octet-stream</param>
+                        <param name="inputName">mc_InputStream</param>
+                        <param name="contentDisposition">${mc_ContentDisposition}</param>
+                        <param name="contentLength">${mc_ContentLength}</param>
+                        <param name="bufferSize">4069</param>
+              </result>
+      </action>
+      
+      <!-- 매장 수정 액션 -->
+      <action name="ms_UpdateFormAction" class="ms_AdminAction.ms_UpdateFormAction">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="params" />
+              <result>/ms_Admin/ms_UpdateForm.jsp</result>
+      </action>
+      
+      <action name="ms_UpdateProAction" class="ms_AdminAction.ms_UpdateProAction">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="fileUpload" />
+          <interceptor-ref name="params" />
+              <result type="chain">ms_ViewAction</result>
+      </action>
+      
+      <!-- 매장 삭제 액션 -->
+      <action name="ms_DeleteAction" class="ms_AdminAction.ms_DeleteAction">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="params" />
+              <result type="chain">ms_ListAction</result>
+      </action>
+      
+      <!-- 테스트용 액션-->
+      <action name="ms_TestAction" class="ms_AdminAction.ms_TestAction">
+          <interceptor-ref name="storeDAO" />
+          <interceptor-ref name="prepare" />
+          <interceptor-ref name="modelDriven" />
+          <interceptor-ref name="params" />
+              <result>/ms_Admin/test.jsp</result>
+      </action>
+      
+    
+    </package>
+</struts>

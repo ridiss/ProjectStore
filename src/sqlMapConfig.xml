@@ -20,7 +20,7 @@
 		</dataSource>
 	</transactionManager>
 	
-	<sqlMap resource="/sql/boardSQL.xml"/> <!-- splMap은 여러개 넣을수있다. -->
+	<sqlMap resource="/sql/msSQL.xml"/> <!-- splMap은 여러개 넣을수있다. -->
 	
 </sqlMapConfig>
 

@@ -7,25 +7,25 @@ public class ms_AdminDTO {
 	private int no;
 	private String store;
 	private String s_Addr;
-	private String sfile_orgname;
-	private String sfile_savname;
+	private String sfile_Orgname;
+	private String sfile_Savname;
 	private String s_Lat;
 	private String s_Lng;
 	private String s_Action;
+	private String m_Category;
 	private String m_A;
-	private String m_AP;
-	private String m_Afile_orgname;
-	private String m_Afile_savname;
+	private String m_Ap;
+	private String m_Afile_Orgname;
+	private String m_Afile_Savname;
 	private String m_B;
-	private String m_BP;
-	private String m_Bfile_orgname;
-	private String m_Bfile_savname;
+	private String m_Bp;
+	private String m_Bfile_Orgname;
+	private String m_Bfile_Savname;
 	private String m_C;
-	private String m_CP;
-	private String m_Cfile_orgname;
-	private String m_Cfile_savname;
-	private Date regdate;
-	
+	private String m_Cp;
+	private String m_Cfile_Orgname;
+	private String m_Cfile_Savname;
+	private Date sreg_Date;
 	
 	public int getNo() {
 		return no;
@@ -45,17 +45,17 @@ public class ms_AdminDTO {
 	public void setS_Addr(String s_Addr) {
 		this.s_Addr = s_Addr;
 	}
-	public String getSfile_orgname() {
-		return sfile_orgname;
+	public String getSfile_Orgname() {
+		return sfile_Orgname;
 	}
-	public void setSfile_orgname(String sfile_orgname) {
-		this.sfile_orgname = sfile_orgname;
+	public void setSfile_Orgname(String sfile_Orgname) {
+		this.sfile_Orgname = sfile_Orgname;
 	}
-	public String getSfile_savname() {
-		return sfile_savname;
+	public String getSfile_Savname() {
+		return sfile_Savname;
 	}
-	public void setSfile_savname(String sfile_savname) {
-		this.sfile_savname = sfile_savname;
+	public void setSfile_Savname(String sfile_Savname) {
+		this.sfile_Savname = sfile_Savname;
 	}
 	public String getS_Lat() {
 		return s_Lat;
@@ -75,29 +75,35 @@ public class ms_AdminDTO {
 	public void setS_Action(String s_Action) {
 		this.s_Action = s_Action;
 	}
+	public String getM_Category() {
+		return m_Category;
+	}
+	public void setM_Category(String m_Category) {
+		this.m_Category = m_Category;
+	}
 	public String getM_A() {
 		return m_A;
 	}
 	public void setM_A(String m_A) {
 		this.m_A = m_A;
 	}
-	public String getM_AP() {
-		return m_AP;
+	public String getM_Ap() {
+		return m_Ap;
 	}
-	public void setM_AP(String m_AP) {
-		this.m_AP = m_AP;
+	public void setM_Ap(String m_Ap) {
+		this.m_Ap = m_Ap;
 	}
-	public String getM_Afile_orgname() {
-		return m_Afile_orgname;
+	public String getM_Afile_Orgname() {
+		return m_Afile_Orgname;
 	}
-	public void setM_Afile_orgname(String m_Afile_orgname) {
-		this.m_Afile_orgname = m_Afile_orgname;
+	public void setM_Afile_Orgname(String m_Afile_Orgname) {
+		this.m_Afile_Orgname = m_Afile_Orgname;
 	}
-	public String getM_Afile_savname() {
-		return m_Afile_savname;
+	public String getM_Afile_Savname() {
+		return m_Afile_Savname;
 	}
-	public void setM_Afile_savname(String m_Afile_savname) {
-		this.m_Afile_savname = m_Afile_savname;
+	public void setM_Afile_Savname(String m_Afile_Savname) {
+		this.m_Afile_Savname = m_Afile_Savname;
 	}
 	public String getM_B() {
 		return m_B;
@@ -105,23 +111,23 @@ public class ms_AdminDTO {
 	public void setM_B(String m_B) {
 		this.m_B = m_B;
 	}
-	public String getM_BP() {
-		return m_BP;
+	public String getM_Bp() {
+		return m_Bp;
 	}
-	public void setM_BP(String m_BP) {
-		this.m_BP = m_BP;
+	public void setM_Bp(String m_Bp) {
+		this.m_Bp = m_Bp;
 	}
-	public String getM_Bfile_orgname() {
-		return m_Bfile_orgname;
+	public String getM_Bfile_Orgname() {
+		return m_Bfile_Orgname;
 	}
-	public void setM_Bfile_orgname(String m_Bfile_orgname) {
-		this.m_Bfile_orgname = m_Bfile_orgname;
+	public void setM_Bfile_Orgname(String m_Bfile_Orgname) {
+		this.m_Bfile_Orgname = m_Bfile_Orgname;
 	}
-	public String getM_Bfile_savname() {
-		return m_Bfile_savname;
+	public String getM_Bfile_Savname() {
+		return m_Bfile_Savname;
 	}
-	public void setM_Bfile_savname(String m_Bfile_savname) {
-		this.m_Bfile_savname = m_Bfile_savname;
+	public void setM_Bfile_Savname(String m_Bfile_Savname) {
+		this.m_Bfile_Savname = m_Bfile_Savname;
 	}
 	public String getM_C() {
 		return m_C;
@@ -129,32 +135,29 @@ public class ms_AdminDTO {
 	public void setM_C(String m_C) {
 		this.m_C = m_C;
 	}
-	public String getM_CP() {
-		return m_CP;
+	public String getM_Cp() {
+		return m_Cp;
 	}
-	public void setM_CP(String m_CP) {
-		this.m_CP = m_CP;
+	public void setM_Cp(String m_Cp) {
+		this.m_Cp = m_Cp;
 	}
-	public String getM_Cfile_orgname() {
-		return m_Cfile_orgname;
+	public String getM_Cfile_Orgname() {
+		return m_Cfile_Orgname;
 	}
-	public void setM_Cfile_orgname(String m_Cfile_orgname) {
-		this.m_Cfile_orgname = m_Cfile_orgname;
+	public void setM_Cfile_Orgname(String m_Cfile_Orgname) {
+		this.m_Cfile_Orgname = m_Cfile_Orgname;
 	}
-	public String getM_Cfile_savname() {
-		return m_Cfile_savname;
+	public String getM_Cfile_Savname() {
+		return m_Cfile_Savname;
 	}
-	public void setM_Cfile_savname(String m_Cfile_savname) {
-		this.m_Cfile_savname = m_Cfile_savname;
+	public void setM_Cfile_Savname(String m_Cfile_Savname) {
+		this.m_Cfile_Savname = m_Cfile_Savname;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getSreg_Date() {
+		return sreg_Date;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setSreg_Date(Date sreg_Date) {
+		this.sreg_Date = sreg_Date;
 	}
 	
-	
-	
-
 }
